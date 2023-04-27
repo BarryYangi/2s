@@ -21,7 +21,7 @@ const App = (props) => {
 
   return (
     <div className="text-center p-4">
-      <h1 className="text-5xl m-4">2s - 旨在快速保存你需要的视频</h1>
+      <h1 className="text-5xl m-4">2sToVideo - 旨在快速保存你需要的视频</h1>
       <div className="relative top-52">
         {" "}
         <input
