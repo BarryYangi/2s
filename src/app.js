@@ -3,44 +3,21 @@ import "./app.css";
 import Video from './video';
 
 const App = (props) => {
-  const [url, setUrl] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
-
+  const [url, setUrl] = useState('');
+  const [videoUrl, setVideoUrl] = useState('');
+  
+  const handleInputChange = (e) => {
+    setUrl(e.target.value);
+  }
+  
   const handleButtonClick = () => {
-    const regex = /video\/([^/]+)/i;
-    const match = url.match(regex);
-
-    if (match) {
-      const bvid = match[1];
-      const apiUrl = `https://api.bilibili.com/x/player/pagelist?bvid=${bvid}`;
-
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          const cid = data.data[0].cid;
-          const videoUrlApi = `https://api.bilibili.com/x/player/playurl?cid=${cid}&bvid=${bvid}&platform=html5&high_quality=1`;
-
-          fetch(videoUrlApi)
-            .then((response) => response.json())
-            .then((data) => {
-              const videoUrl = data.data.dash.video[0].baseUrl;
-              setVideoUrl(videoUrl);
-            })
-            .catch((error) => {
-              // Handle the error
-            });
-        })
-        .catch((error) => {
-          // Handle the error
-        });
-    } else {
-      // Handle the case where the video URL is not found
-    }
-  };
-
-  const handleInputChange = (event) => {
-    setUrl(event.target.value);
-  };
+    const id = url.split('=')[1];
+    fetch(`https://hub.onmicrosoft.cn/public/video/ncm?vid=${id}&raw=false&no_cache=false`)
+      .then(res => res.json())
+      .then(data => {
+        setVideoUrl(data.video_url);
+      })
+  }
 
   return (
     <div className="text-center p-4">

@@ -4,11 +4,10 @@
 
 body {
   background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
   height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* overflow: hidden; */
   /* Screen version */
   font-family: "LXGW WenKai Screen", sans-serif;
 }
